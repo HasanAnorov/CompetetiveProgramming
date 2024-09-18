@@ -15,8 +15,8 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-src/cit_new/
 src/cit_answers/
+src/cit_new/
 
 ### NetBeans ###
 /nbproject/private/
