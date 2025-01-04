@@ -1,11 +1,7 @@
 package draft
 
-import java.io.File
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.log10
-import kotlin.math.pow
 
 
 fun main() {
@@ -87,8 +83,13 @@ fun main() {
     val currentSecond = calendar.get(Calendar.SECOND)
 
     val currentDate = calendar.get(Calendar.DATE)
-
+    //val currentMonth = calendar.get(Calendar.MONTH)
     val currentYear = calendar.get(Calendar.YEAR)
+    val date = "${currentSecond}_${currentMinute}_${currentHour}"
+
+    println(
+        "date is $date"
+    )
 
     val monthDate = SimpleDateFormat("MMM", Locale.getDefault())
     val currentShortMontName = monthDate.format(calendar.time)
@@ -114,67 +115,67 @@ fun main() {
 //        millisecondsToTime(milliseconds)
 //    )
 
-    println(
-        getCurrentTime()
-    )
+//    println(
+//        getCurrentTime()
+//    )
 
 }
 
-fun getCurrentTime(): String {
-    val calendar = Calendar.getInstance()
-    return calendar.time.toString()
-}
+//fun getCurrentTime(): String {
+//    val calendar = Calendar.getInstance()
+//    return calendar.time.toString()
+//}
 
-private fun millisecondsToTime(milliseconds: Long): String {
-    val minutes = (milliseconds / 1000) / 60
-    val seconds = (milliseconds / 1000) % 60
-    val secondsStr = seconds.toString()
-    val secs = if (secondsStr.length >= 2) {
-        secondsStr.substring(0, 2)
-    } else {
-        "0$secondsStr"
-    }
-
-    return "$minutes:$secs"
-}
-
-private fun getExtensionFromFilename(fileName:String):String{
-    return if (fileName.lastIndexOf(".") > 0) {
-        fileName.substringAfterLast(".")
-    } else {
-        ""
-    }
-}
-
-fun readableFileSize(size: Long): String {
-    if (size <= 0) return "0"
-    val units = arrayOf("B", "kB", "MB", "GB", "TB", "PB", "EB")
-    val digitGroups = (log10(size.toDouble()) / log10(1024.0)).toInt()
-    return DecimalFormat("#,##0.#").format(size / 1024.0.pow(digitGroups.toDouble())) + " " + units[digitGroups]
-}
-
-fun getFileNameWithoutExtension(fileName: String): String {
-    val lastDotIndex = fileName.lastIndexOf('.')
-    return if (lastDotIndex > 0) {
-        fileName.substring(0, lastDotIndex)
-    } else {
-        fileName // No extension found, return the original fileName
-    }
-}
-
-fun generateUniqueFileName(directory: String, baseFileName: String, extension: String): String {
-    var count = 0
-    var newFileName: String
-    val baseNameWithExtension = "$baseFileName.$extension"
-
-    do {
-        count++
-        newFileName = if (count == 1) {
-            "$directory/$baseNameWithExtension"
-        } else {
-            "$directory/$baseFileName($count).$extension"
-        }
-    } while (File(newFileName).exists())
-
-    return newFileName
-}
+//private fun millisecondsToTime(milliseconds: Long): String {
+//    val minutes = (milliseconds / 1000) / 60
+//    val seconds = (milliseconds / 1000) % 60
+//    val secondsStr = seconds.toString()
+//    val secs = if (secondsStr.length >= 2) {
+//        secondsStr.substring(0, 2)
+//    } else {
+//        "0$secondsStr"
+//    }
+//
+//    return "$minutes:$secs"
+//}
+//
+//private fun getExtensionFromFilename(fileName:String):String{
+//    return if (fileName.lastIndexOf(".") > 0) {
+//        fileName.substringAfterLast(".")
+//    } else {
+//        ""
+//    }
+//}
+//
+//fun readableFileSize(size: Long): String {
+//    if (size <= 0) return "0"
+//    val units = arrayOf("B", "kB", "MB", "GB", "TB", "PB", "EB")
+//    val digitGroups = (log10(size.toDouble()) / log10(1024.0)).toInt()
+//    return DecimalFormat("#,##0.#").format(size / 1024.0.pow(digitGroups.toDouble())) + " " + units[digitGroups]
+//}
+//
+//fun getFileNameWithoutExtension(fileName: String): String {
+//    val lastDotIndex = fileName.lastIndexOf('.')
+//    return if (lastDotIndex > 0) {
+//        fileName.substring(0, lastDotIndex)
+//    } else {
+//        fileName // No extension found, return the original fileName
+//    }
+//}
+//
+//fun generateUniqueFileName(directory: String, baseFileName: String, extension: String): String {
+//    var count = 0
+//    var newFileName: String
+//    val baseNameWithExtension = "$baseFileName.$extension"
+//
+//    do {
+//        count++
+//        newFileName = if (count == 1) {
+//            "$directory/$baseNameWithExtension"
+//        } else {
+//            "$directory/$baseFileName($count).$extension"
+//        }
+//    } while (File(newFileName).exists())
+//
+//    return newFileName
+//}
