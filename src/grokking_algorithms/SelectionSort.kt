@@ -1,4 +1,4 @@
-package dsa
+package grokking_algorithms
 
 fun main() {
     val array = intArrayOf(5,3,6,2,10)

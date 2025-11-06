@@ -1,4 +1,4 @@
-package dsa
+package grokking_algorithms
 
 /**
  * Grokking algorithms:
